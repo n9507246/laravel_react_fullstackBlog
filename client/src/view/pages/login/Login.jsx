@@ -1,9 +1,25 @@
 import { Link } from 'react-router-dom'
 import classes from './styles.module.scss'
 import LoginBtn from '@components/loginBtn/loginBtn'
+import useFormData from '@hooks/useFormData'
+import MyInput from '../../../components/UI/MyInput/MyInput'
 
 function Login() {
 
+    const loginForm = useFormData()
+
+    const loginFormHandler = (ev)=> {
+          
+      ev.preventDefault()
+
+      console.log(loginForm.getData())
+
+      // auth.login('/auth/login', loginForm.getData())
+      //     .then(() => navigate('/', {replace:true}))
+      //     .catch((error)=>{
+      //         if(error.response.status == 422) loginForm.setError(error.response.data.errors)
+      //     })
+    }
     return (
       <div className={classes.login}>
         <div className={classes.card}>
@@ -17,12 +33,12 @@ function Login() {
               <button>Register</button>
             </Link>
           </div>
-          <div className={classes.right}>
+          <div className={classes.right} onSubmit={loginFormHandler}>
             <h1>Login</h1>
-            <form>
-              <input type="text" placeholder='Username' />
-              <input type="password" placeholder='Password' />
-              <LoginBtn/>
+            <form className={classes.loginForm}>
+              <MyInput name='username' type="text" placeholder='Username' bindData={loginForm}/>
+              <MyInput name='password' type="password" placeholder='Password' bindData={loginForm}/>
+              <button >Login</button>
               <div className={classes.register_link_mobile}>
                 Not registered yet? 
                 <Link  to='/register'>
