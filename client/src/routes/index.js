@@ -8,5 +8,5 @@ import authRoutes from "@routes/auth/authRoutes"
 
 export default createBrowserRouter([
     ...authRoutes,
-    // ...profileRoutes,
+    ...profileRoutes,
 ])

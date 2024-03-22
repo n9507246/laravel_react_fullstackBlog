@@ -48,6 +48,10 @@ axiosClient.interceptors.response.use(
                         console.log("Token has been updated") 
                         return axiosClient.request(error.config)
                 })
+                .catch((e) => {
+                    localStorage.removeItem('ACCESS_TOKEN')
+                    // return axiosClient.request(error.config)
+                })
         }
         
         if(import.meta.env.VITE_DEBUG == "TRUE") console.error('axios interceptors log(response):', error)

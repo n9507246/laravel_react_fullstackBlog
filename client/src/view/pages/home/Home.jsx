@@ -1,7 +1,7 @@
-import LogoutBtn from '@components/logoutBtn/logoutBtn'
-import Stories from '@components/stories/Stories'
-import Posts from '@components/posts/Posts'
-import classes from './styles.module.scss'
+// import LogoutBtn from '@components/logoutBtn/logoutBtn'
+// import Stories from '@components/stories/Stories'
+// import Posts from '@components/posts/Posts'
+// import classes from './styles.module.scss'
 import './styles.scss'
 
 
@@ -11,10 +11,11 @@ function Home() {
     return (
       <>
       <div className='home'>
-        <Stories/>
+        home
+        {/* <Stories/>
         <Posts/>        
-        {/* <Posts/> */}
-        <LogoutBtn/>
+        <Posts/>
+        <LogoutBtn/> */}
       </div>
 
       </>
