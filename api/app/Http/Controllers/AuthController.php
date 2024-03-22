@@ -22,15 +22,23 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function login()
+    public function login(\App\Http\Requests\AuthLoginRequest $request)
     {
-        
-        $credentials = request(['email', 'password']);
-
+        $credentials= $request->only('email', 'password');
         if (! $token = auth()->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json(['errors' => ['email' => ['Неверное имя пользователя или пароль']]], 422);
         }
+        return $this->respondWithToken($token);
+    }
 
+    public function registration(\App\Http\Requests\AuthRegistrationRequest $request){
+        $data = $request->only('name', 'email', 'password');
+        $user = \App\Models\User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => \Hash::make($data['password'])
+        ]);
+        $token = auth()->tokenById($user->id);
         return $this->respondWithToken($token);
     }
 

@@ -18,6 +18,7 @@ function Login() {
       auth.login('/auth/login', loginForm.getData())
           // .then(() => navigate('/', {replace:true}))
           .catch((error)=>{
+            console.log(error)
               if(error.response.status == 422) loginForm.setError(error.response.data.errors)
           })
     }
@@ -37,7 +38,7 @@ function Login() {
           <div className={classes.right} onSubmit={loginFormHandler}>
             <h1>Login</h1>
             <form className={classes.loginForm}>
-              <MyInput name='username' type="text" placeholder='Username' bindData={loginForm}/>
+              <MyInput name='email' type="text" placeholder='Email' bindData={loginForm}/>
               <MyInput name='password' type="password" placeholder='Password' bindData={loginForm}/>
               <button >Login</button>
               <div className={classes.register_link_mobile}>

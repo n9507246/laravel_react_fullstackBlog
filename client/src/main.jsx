@@ -7,11 +7,11 @@ import { AuthContextProvider } from './context/authContext.jsx'
 import './style.scss'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+
     <DarkModeContextProvider>
       <AuthContextProvider>
         <App/>
       </AuthContextProvider>
     </DarkModeContextProvider>  
-  </React.StrictMode>,
+,
 )
