@@ -1,28 +1,60 @@
-import { createContext, useEffect, useState } from "react"
+import { createContext, useContext, useEffect, useState } from "react";
+import API from "@axiosClient"
 
-export const AuthContext = createContext()
+const AuthContext = createContext()
 export const AuthContextProvider = ({children}) => {
-    const [currentUser, setCurrentUser] = useState(
-        JSON.parse(localStorage.getItem('TOKEN')) || null
+    
+    const [dataUser, setDataUser] = useState(null)
+    const [token, setToken] = useState(
+        localStorage.getItem('ACCESS_TOKEN')
     )
-
+    
     useEffect(()=>{
-        localStorage.setItem('TOKEN', JSON.stringify(currentUser))
-    }, [currentUser])
+        API.post('/auth/me', {})
+            .then((response) => { setDataUser(response.data) })
+            .catch((error)=>{
+                // console.error('error',error)
+            }) 
+    }, [token])
 
-    const login = () => {
-        setCurrentUser(
-            {
-                id: 1, 
-                name: 'BAD ASS', 
-                profile_picture: 'https://yobte.ru/uploads/posts/2019-11/znojnye-krasotki-113-foto-22.jpg'
-            })
-    } 
+    const login = (endpoint, data) => {
+        return API.post(endpoint, data)
+        .then((responce)=>{
+            localStorage.setItem('ACCESS_TOKEN', responce.data.access_token)
+            setToken(responce.data.access_token)
+        })
+    }
+
+    const registration = (endpoint, data) => {
+        return API.post(endpoint, data)
+        .then((responce)=>{
+            localStorage.setItem('ACCESS_TOKEN', responce.data.access_token)
+            setToken(responce.data.access_token)
+        })
+    }
+
     const logout = () => {
-        setCurrentUser(null)
-    } 
+        setDataUser(null)
 
+        localStorage.removeItem('ACCESS_TOKEN')
+        setToken(null)
+    }
 
-    return <AuthContext.Provider value={{currentUser, login, logout}}>{children}</AuthContext.Provider>
+    return(
+        <AuthContext.Provider value={{
+            dataUser,
+            token, 
 
+            login,
+            registration,
+            logout,
+
+            get isAuthenticate() {
+                return this.token !== null
+            }
+        }}>
+            {children}
+        </AuthContext.Provider>
+    )
 }
+export const useAuth = () => useContext(AuthContext)

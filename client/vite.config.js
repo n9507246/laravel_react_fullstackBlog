@@ -10,6 +10,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
+      '@guards': path.resolve(__dirname, './src/guards'),
       '@view': path.resolve(__dirname, './src/view'),
       '@layouts': path.resolve(__dirname, './src/view/layouts'),
       '@pages': path.resolve(__dirname, './src/view/pages'),
@@ -17,10 +18,13 @@ export default defineConfig({
       '@hoc': path.resolve(__dirname, './src/hoc'),
       '@hooks': path.resolve(__dirname, './src/hooks'),
       '@context' : path.resolve(__dirname, './src/context'),
+      '@contexts' : path.resolve(__dirname, './src/context'),
       '@':  path.resolve(__dirname, './src'),
       '@assets': path.resolve(__dirname, './src/assets'),
       '@components': path.resolve(__dirname, './src/components'),
-      '@UI':  path.resolve(__dirname, './src/components/UI')
+      '@UI':  path.resolve(__dirname, './src/components/UI'),
+      '@axiosClient': path.resolve(__dirname, './src/axiosClient.js'), 
+      
     },
   },
   plugins: [react()],

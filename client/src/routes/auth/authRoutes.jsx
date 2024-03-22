@@ -1,10 +1,10 @@
 import Login from '@pages/login/Login'
 import Register from '@pages/register/Register'
-import GuestsRoute from '@hoc/GuestsRoute'
-
+import GuestRoutes from '../../guards/GuestsRoute'
+// import GuestRoutes from '@/guards/GuestRoutes'
 export default [
     {
-        element: <GuestsRoute/>,
+        element: <GuestRoutes/>,
         children:[
             {
                 path: "/login",

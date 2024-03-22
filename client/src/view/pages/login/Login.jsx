@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom'
 import classes from './styles.module.scss'
-import LoginBtn from '@components/loginBtn/loginBtn'
+import { useAuth } from "@context/authContext"
 import useFormData from '@hooks/useFormData'
-import MyInput from '../../../components/UI/MyInput/MyInput'
+import MyInput from '@components/UI/MyInput/MyInput'
 
 function Login() {
 
     const loginForm = useFormData()
+    const auth = useAuth()
 
     const loginFormHandler = (ev)=> {
           
@@ -14,11 +15,11 @@ function Login() {
 
       console.log(loginForm.getData())
 
-      // auth.login('/auth/login', loginForm.getData())
-      //     .then(() => navigate('/', {replace:true}))
-      //     .catch((error)=>{
-      //         if(error.response.status == 422) loginForm.setError(error.response.data.errors)
-      //     })
+      auth.login('/auth/login', loginForm.getData())
+          // .then(() => navigate('/', {replace:true}))
+          .catch((error)=>{
+              if(error.response.status == 422) loginForm.setError(error.response.data.errors)
+          })
     }
     return (
       <div className={classes.login}>

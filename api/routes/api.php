@@ -27,3 +27,5 @@ Route::group([
     Route::post('me', [App\Http\Controllers\AuthController::class, 'me']);
 
 });
+
+Route::get('/test', function(){return'ok';});
