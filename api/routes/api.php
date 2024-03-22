@@ -27,7 +27,3 @@ Route::group([
     Route::post('me', [App\Http\Controllers\AuthController::class, 'me']);
 
 });
-
-Route::post('/test', function(){
-    return response()->json([ 'ass' => 'hole']);
-});
