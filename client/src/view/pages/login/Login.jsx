@@ -18,7 +18,6 @@ function Login() {
       auth.login('/auth/login', loginForm.getData())
           .then(() => navigate('/', {replace:true}))
           .catch((error)=>{
-            console.log(error)
               if(error.response.status == 422) loginForm.setError(error.response.data.errors)
           })
     }
