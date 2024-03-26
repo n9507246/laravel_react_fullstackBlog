@@ -3,12 +3,14 @@ import classes from './styles.module.scss'
 import { useAuth } from "@context/authContext"
 import useFormData from '@hooks/useFormData'
 import MyInput from '@components/UI/MyInput/MyInput'
+import { useNavigate } from "react-router-dom";
 
 function Login() {
 
     const loginForm = useFormData()
     const auth = useAuth()
-
+    const navigate = useNavigate();
+    
     const loginFormHandler = (ev)=> {
           
       ev.preventDefault()
