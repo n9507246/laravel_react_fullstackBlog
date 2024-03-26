@@ -1,8 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
 import { DarkModeContextProvider } from '@context/darkModeContext'
 import { AuthContextProvider } from './context/authContext.jsx'
+import { RouterProvider } from "react-router-dom"
+import router from "@routes"
+
 
 import './style.scss'
 
@@ -10,7 +12,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
     <DarkModeContextProvider>
       <AuthContextProvider>
-        <App/>
+        <RouterProvider router={router} />
       </AuthContextProvider>
     </DarkModeContextProvider>  
 ,
