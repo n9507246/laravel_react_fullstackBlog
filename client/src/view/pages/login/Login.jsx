@@ -10,12 +10,10 @@ function Login() {
     const loginForm = useFormData()
     const auth = useAuth()
     const navigate = useNavigate();
-    
+
     const loginFormHandler = (ev)=> {
           
       ev.preventDefault()
-
-      console.log(loginForm.getData())
 
       auth.login('/auth/login', loginForm.getData())
           .then(() => navigate('/', {replace:true}))
@@ -37,9 +35,9 @@ function Login() {
               <button>Register</button>
             </Link>
           </div>
-          <div className={classes.right} onSubmit={loginFormHandler}>
+          <div className={classes.right} >
             <h1>Login</h1>
-            <form className={classes.loginForm}>
+            <form className={classes.loginForm} onSubmit={loginFormHandler}>
               <MyInput name='email' type="text" placeholder='Email' bindData={loginForm}/>
               <MyInput name='password' type="password" placeholder='Password' bindData={loginForm}/>
               <button >Login</button>
