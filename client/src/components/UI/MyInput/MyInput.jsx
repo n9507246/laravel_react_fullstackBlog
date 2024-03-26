@@ -4,7 +4,6 @@ export default function(props){
     
     const {getDataByName, getErrorByName} = props.bindData !== undefined ? props.bindData : {}
 
-    console.log(getErrorByName)
     return(
         <div className={classes.inputField + " " + props.className}>
             <label style={props.label ? {display:'block'} : {display:'none'} }>{props.label}</label>
